@@ -20,15 +20,17 @@ async function testRedisConnection() {
 
   const client = createClient({
     socket: {
-      host: host,
+      host: host + 'x',
       port: 6380,
       tls: true,
     },
     password: password,
   });
 
-  client.on('error', (err) => {
+  client.on('error', async (err) => {
     console.error('Instantiating the Redis client failed, with this errror:', err);
+    client.destroy();
+    process.exit(1);
   });
 
   try {
