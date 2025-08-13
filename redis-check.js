@@ -20,7 +20,7 @@ async function testRedisConnection() {
 
   const client = createClient({
     socket: {
-      host: host + 'x',
+      host: host,
       port: 6380,
       tls: true,
     },
